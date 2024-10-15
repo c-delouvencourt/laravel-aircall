@@ -1,0 +1,23 @@
+# Laravel specific
+/vendor
+/node_modules
+/public/storage
+/public/hot
+/storage/*.key
+/.env
+/.env.*.php
+/.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+
+# IDE specific
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db

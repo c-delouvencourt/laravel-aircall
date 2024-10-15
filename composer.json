@@ -1,0 +1,51 @@
+{
+    "name": "cldt/laravel-aircall",
+    "description": "API Wrapper for the Aircall API",
+    "keywords": [
+        "cldt",
+        "laravel-aircall"
+    ],
+    "homepage": "https://github.com/cdelouvencourt/laravel-aircall",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Clément de Louvencourt",
+            "email": "clement@meilleursbiens.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+        "illuminate/http": "^8.0|^9.0|^10.0|^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CLDT\\Aircall\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CLDT\\Aircall\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CLDT\\LaravelAircall\\LaravelAircallServiceProvider"
+            ],
+            "aliases": {
+                "Aircall": "CLDT\\LaravelAircall\\LaravelAircallFacade"
+            }
+        }
+    }
+}
