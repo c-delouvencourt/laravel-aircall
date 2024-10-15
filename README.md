@@ -1,23 +1,40 @@
-# Very short description of the package
+# Aircall API for Laravel 
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/cdelouvencourt/laravel-aircall.svg?style=flat-square)](https://packagist.org/packages/cdelouvencourt/laravel-aircall)
 [![Total Downloads](https://img.shields.io/packagist/dt/cdelouvencourt/laravel-aircall.svg?style=flat-square)](https://packagist.org/packages/cdelouvencourt/laravel-aircall)
 ![GitHub Actions](https://github.com/cdelouvencourt/laravel-aircall/actions/workflows/main.yml/badge.svg)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+This package provides a simple way to interact with the Aircall API in your Laravel application.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require cdelouvencourt/laravel-aircall
+composer require cldt/laravel-aircall
+```
+
+You can publish the config file with:
+```bash
+php artisan vendor:publish --provider="CLDT\Aircall\AircallServiceProvider" --tag="config"
 ```
 
 ## Usage
 
 ```php
-// Usage description here
+use CLDT\Aircall\Facades\Aircall;
+
+// Get all calls
+$allCalls = Aircall::calls()->all();
+
+// Get a call by ID
+$call = Aircall::calls()->find($id);
+
+// Get all users 
+$allContacts = Aircall::users([
+    "from" => "1729028410",
+])->all();
+
 ```
 
 ### Testing
@@ -46,7 +63,3 @@ If you discover any security related issues, please email clement@meilleursbiens
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
