@@ -10,7 +10,7 @@ return [
     // ----------------------------------------------------------
 
     // The API endpoint
-    'endpoint' => env('AIRCALL_ENDPOINT', 'https://api.aircall.io/v1'),
+    'endpoint' => env('AIRCALL_ENDPOINT', 'https://api.aircall.io/v1/'),
 
     // The API ID and Token
     'api_id' => env('AIRCALL_API_ID', ''),

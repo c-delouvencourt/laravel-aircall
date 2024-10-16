@@ -18,11 +18,9 @@ use Illuminate\Support\Facades\Http;
 
 class Aircall
 {
-
     public function __construct()
     {
         $this->client = Http::withHeaders([
-            'Accept' => 'application/json',
             'Authorization' => 'Bearer ' . base64_decode(config('aircall.api_id') . ':' . config('aircall.api_token')),
             'Content-Type' => 'application/json',
         ])->baseUrl(config('aircall.endpoint'));
