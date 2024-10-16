@@ -9,6 +9,15 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class AircallServiceProvider extends PackageServiceProvider
 {
+    public function registeringPackage()
+    {
+        $this->app->bind('aircall', function () {
+            return new Aircall();
+        });
+
+        parent::registeringPackage();
+    }
+
     public function configurePackage(Package $package): void
     {
         $package
