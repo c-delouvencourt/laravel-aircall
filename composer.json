@@ -1,6 +1,6 @@
 {
     "name": "cldt/laravel-aircall",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "API Wrapper for the Aircall API",
     "keywords": [
         "cldt",

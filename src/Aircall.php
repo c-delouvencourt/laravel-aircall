@@ -14,13 +14,17 @@ use CLDT\Aircall\Api\Tag;
 use CLDT\Aircall\Api\Team;
 use CLDT\Aircall\Api\User;
 use CLDT\Aircall\Api\Webhook;
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 
 class Aircall
 {
+    protected PendingRequest $client;
+
     public function __construct()
     {
         $this->client = Http::withHeaders([
+            'Accept' => 'application/json',
             'Authorization' => 'Bearer ' . base64_decode(config('aircall.api_id') . ':' . config('aircall.api_token')),
             'Content-Type' => 'application/json',
         ])->baseUrl(config('aircall.endpoint'));
