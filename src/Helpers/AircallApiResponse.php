@@ -95,14 +95,19 @@ class AircallApiResponse
 
     public function toArray(): array
     {
-        return [
+        $array = [
             'statusCode' => $this->statusCode,
             'hasError' => $this->hasError,
             'message' => $this->message,
             'verbose' => $this->verbose,
-            'meta' => $this->meta->toArray(),
             'data' => $this->data
         ];
+
+        if(isset($this->meta)) {
+            $array['meta'] = $this->meta->toArray();
+        }
+
+        return $array;
     }
 
     public function toString(): string{
