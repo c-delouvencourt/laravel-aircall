@@ -1,33 +1,90 @@
 <?php
 
-namespace CLDT\LaravelAircall;
+namespace CLDT\Aircall;
 
-use Illuminate\Http\Client\PendingRequest;
-use CLDT\Aircall\Api\Teams;
-use CLDT\Aircall\Api\Users;
-use CLDT\Aircall\Api\Calls;
+use CLDT\Aircall\Api\Call;
+use CLDT\Aircall\Api\Company;
+use CLDT\Aircall\Api\Contact;
+use CLDT\Aircall\Api\ConversationIntelligence;
+use CLDT\Aircall\Api\DialerCampaign;
+use CLDT\Aircall\Api\Integration;
+use CLDT\Aircall\Api\Message;
+use CLDT\Aircall\Api\Number;
+use CLDT\Aircall\Api\Tag;
+use CLDT\Aircall\Api\Team;
+use CLDT\Aircall\Api\User;
+use CLDT\Aircall\Api\Webhook;
+use Illuminate\Support\Facades\Http;
 
 class Aircall
 {
-    protected PendingRequest $client;
 
-    public function __construct(PendingRequest $client)
+    public function __construct()
     {
-        $this->client = $client;
+        $this->client = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . base64_decode(config('aircall.api_id') . ':' . config('aircall.api_token')),
+            'Content-Type' => 'application/json',
+        ])->baseUrl(config('aircall.endpoint'));
     }
 
-    public function users(): Users
+    public function user(): User
     {
-        return new Users($this->client);
+        return new User($this->client);
     }
 
-    public function teams(): Teams
+    public function team(): Team
     {
-        return new Teams($this->client);
+        return new Team($this->client);
     }
 
-    public function calls(): Calls
+    public function call(): Call
     {
-        return new Calls($this->client);
+        return new Call($this->client);
+    }
+
+    public function dialerCampaign(): DialerCampaign
+    {
+        return new DialerCampaign($this->client);
+    }
+
+    public function number(): Number
+    {
+        return new Number($this->client);
+    }
+
+    public function conversationIntelligence(): ConversationIntelligence
+    {
+        return new ConversationIntelligence($this->client);
+    }
+
+    public function message(): Message
+    {
+        return new Message($this->client);
+    }
+
+    public function contact(): Contact
+    {
+        return new Contact($this->client);
+    }
+
+    public function tag(): Tag
+    {
+        return new Tag($this->client);
+    }
+
+    public function webhook(): Webhook
+    {
+        return new Webhook($this->client);
+    }
+
+    public function company(): Company
+    {
+        return new Company($this->client);
+    }
+
+    public function integration(): Integration
+    {
+        return new Integration($this->client);
     }
 }

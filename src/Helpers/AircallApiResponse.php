@@ -1,6 +1,6 @@
 <?php
 
-namespace CLDT\Aircall\Models;
+namespace CLDT\Aircall\Helpers;
 
 class AircallApiResponse
 {
@@ -14,7 +14,7 @@ class AircallApiResponse
 
     protected array $data;
 
-    public function __construct(int $statusCode, array $response = [], string $dataKey = 'data')
+    public function __construct(int $statusCode, array $response = [], string $dataKey = null)
     {
         if ($statusCode < 200 || $statusCode >= 300) {
             $this->hasError = true;
@@ -26,6 +26,10 @@ class AircallApiResponse
         }
         if (isset($response['meta'])) {
             $this->meta = new AircallApiPagination($response['meta']);
+        }
+        if(!isset($dataKey)) {
+            $this->data = $response;
+            return;
         }
         if(!isset($response[$dataKey])) {
             $this->data = [];

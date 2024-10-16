@@ -1,41 +1,43 @@
 <?php
 
-namespace CLDT\LaravelAircall;
+namespace CLDT\Aircall;
 
+use CLDT\Aircall\Http\Controllers\AircallWebhooksController;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class AircallServiceProvider extends ServiceProvider
+class AircallServiceProvider extends PackageServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     */
-    public function boot()
-    {
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('aircall.php'),
-            ], 'config');
-        }
-    }
 
-    /**
-     * Register the application services.
-     */
     public function register()
     {
-        // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'aircall');
-
-        $client = Http::withHeaders([
-            'Accept' => 'application/json',
-            'Authorization' => 'Bearer ' . base64_decode(config('aircall.api_id') . ':' . config('aircall.api_token')),
-            'Content-Type' => 'application/json',
-        ])->baseUrl(config('aircall.endpoint'));
-
-        // Register the main class to use with the facade
-        $this->app->singleton('aircall', function () use ($client) {
-            return new Aircall($client);
+        $this->app->singleton('aircall', function (){
+            return new Aircall();
         });
+    }
+
+    public function configurePackage(Package $package): void
+    {
+        $package
+            ->name('aircall')
+            ->hasConfigFile()
+            ->hasMigration('create_aircall_webhook_calls_table')
+            ->hasInstallCommand(function(InstallCommand $command) {
+                $command
+                    ->publishConfigFile()
+                    ->askToStarRepoOnGitHub('c-delouvencourt/laravel-aircall');
+            });
+        ;
+    }
+
+    public function bootingPackage()
+    {
+        $webhookPath = config('aircall.webhook_path');
+
+        Route::post($webhookPath, AircallWebhooksController::class);
     }
 }

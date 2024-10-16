@@ -4,9 +4,6 @@ namespace CLDT\Aircall;
 
 use Illuminate\Support\Facades\Facade;
 
-/**
- * @see \CLDT\Aircall\Skeleton\SkeletonClass
- */
 class AircallFacade extends Facade
 {
     /**

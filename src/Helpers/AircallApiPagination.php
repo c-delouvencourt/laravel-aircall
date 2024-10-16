@@ -1,6 +1,6 @@
 <?php
 
-namespace CLDT\Aircall\Models;
+namespace CLDT\Aircall\Helpers;
 
 class AircallApiPagination
 {

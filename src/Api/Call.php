@@ -2,14 +2,14 @@
 
 namespace CLDT\Aircall\Api;
 
-use CLDT\Aircall\Models\AircallApiResponse;
+use CLDT\Aircall\Helpers\AircallApiResponse;
 
 /**
- * Teams API
+ * Call API
  *
- * @see https://developer.aircall.io/api-references/#team
+ * @see https://developer.aircall.io/api-references/#call
  */
-class Calls extends BaseApi
+class Call extends BaseApi
 {
     /**
      * List all Calls

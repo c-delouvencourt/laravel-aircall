@@ -2,14 +2,14 @@
 
 namespace CLDT\Aircall\Api;
 
-use CLDT\Aircall\Models\AircallApiResponse;
+use CLDT\Aircall\Helpers\AircallApiResponse;
 
 /**
  * Users API
  *
  * @see https://developer.aircall.io/api-references/#users
  */
-class Users extends BaseApi
+class User extends BaseApi
 {
     /**
      * List all Users
