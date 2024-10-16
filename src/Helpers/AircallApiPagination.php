@@ -50,4 +50,15 @@ class AircallApiPagination
     {
         return $this->previousPageLink;
     }
+
+    public function toArray(){
+        return [
+            'count' => $this->count,
+            'total' => $this->total,
+            'current_page' => $this->currentPage,
+            'per_page' => $this->perPage,
+            'next_page_link' => $this->nextPageLink,
+            'previous_page_link' => $this->previousPageLink,
+        ];
+    }
 }

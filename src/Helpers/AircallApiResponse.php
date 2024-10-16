@@ -93,4 +93,20 @@ class AircallApiResponse
         return $this->meta;
     }
 
+    public function toArray(): array
+    {
+        return [
+            'statusCode' => $this->statusCode,
+            'hasError' => $this->hasError,
+            'message' => $this->message,
+            'verbose' => $this->verbose,
+            'meta' => $this->meta->toArray(),
+            'data' => $this->data
+        ];
+    }
+
+    public function toString(): string{
+        return json_encode($this->data);
+    }
+
 }
