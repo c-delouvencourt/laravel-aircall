@@ -18,8 +18,8 @@ class AircallApiResponse
     {
         if ($statusCode < 200 || $statusCode >= 300) {
             $this->hasError = true;
-            $this->message = $response['error'];
-            $this->verbose = $response['verbose'];
+            $this->message = $response['error'] ?? 'Unknown error';
+            $this->verbose = $response['verbose'] ?? 'Unknown error';
             $this->statusCode = $statusCode;
             $this->data = [];
             return;
