@@ -28,6 +28,11 @@ class Aircall
         ])->baseUrl(config('aircall.endpoint'));
     }
 
+    public static function build()
+    {
+        return new static();
+    }
+
     public function user(): User
     {
         return new User($this->client);
