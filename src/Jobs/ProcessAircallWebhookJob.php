@@ -19,7 +19,6 @@ class ProcessAircallWebhookJob extends ProcessWebhookJob
     public function handle()
     {
         event("aircall::{$this->webhookCall->eventName()}", $this->webhookCall);
-        event("aircall::{$this->webhookCall->eventActionName()}", $this->webhookCall);
 
         collect(config('aircall.webhook_jobs'))
             ->filter(function (string $jobClassName, $eventActionName) {
@@ -29,7 +28,6 @@ class ProcessAircallWebhookJob extends ProcessWebhookJob
 
                 return in_array($eventActionName, [
                     $this->webhookCall->eventName(),
-                    $this->webhookCall->eventActionName(),
                 ]);
             })
             ->each(function (string $jobClassName) {
