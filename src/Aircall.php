@@ -25,9 +25,9 @@ class Aircall
     {
         $this->client = Http::withHeaders([
             'Accept' => 'application/json',
-            'Authorization' => 'Bearer ' . base64_encode(config('aircall.api_id') . ':' . config('aircall.api_token')),
             'Content-Type' => 'application/json',
-        ])->baseUrl(config('aircall.endpoint'));
+        ])->withBasicAuth(config('aircall.api_id'), config('aircall.api_token'))
+            ->baseUrl(config('aircall.endpoint'));
     }
 
     public static function build()
