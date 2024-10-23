@@ -9,6 +9,7 @@ use Spatie\WebhookClient\Exceptions\InvalidConfig;
 use Spatie\WebhookClient\Exceptions\InvalidWebhookSignature;
 use Spatie\WebhookClient\WebhookConfig;
 use Spatie\WebhookClient\WebhookProcessor;
+use Spatie\WebhookClient\WebhookProfile\ProcessEverythingWebhookProfile;
 use Symfony\Component\HttpFoundation\Response;
 
 class AircallWebhooksController
@@ -23,7 +24,7 @@ class AircallWebhooksController
             'signing_secret' => config('aircall.webhook_token'),
             'signature_header_name' => '',
             'signature_validator' => AircallWebhookSignatureValidator::class,
-            'webhook_profile' => '',
+            'webhook_profile' => ProcessEverythingWebhookProfile::class,
             'webhook_model' => config('aircall.webhook_model'),
             'process_webhook_job' => config('aircall.webhook_jobs'),
             'store_headers' => [],
