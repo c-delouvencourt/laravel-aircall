@@ -1,6 +1,6 @@
 {
     "name": "cldt/laravel-aircall",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "description": "API Wrapper for the Aircall API",
     "keywords": [
         "cldt",
@@ -18,7 +18,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/contracts": "^8.77|^9.0|^10.0|^11.0",
+        "illuminate/contracts": "^8.77|^9.0|^10.0|^11.0|^12.0",
         "spatie/laravel-package-tools": "^1.9.0",
         "spatie/laravel-webhook-client": "^3.1.0"
     },
